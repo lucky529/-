@@ -40,66 +40,66 @@
 //printf("%c\n",ch);
 //return 0;
 //}
-//#include<stdio.h>
-//int main()
-//{
-//int i;
-//int k;
-//int c;
-//for(i=1; i<10; i++)
-//{   
-//	for(k=1; k<=i; k++)
-//
-//	{
-//		c=i*k;
-//	    printf ("%d*%d=%d\t",k,i,c);
-//	}
-//	printf("\n");
-//  }
-//return 0;
-//}
+#include<stdio.h>
+int main()
+{
+int i;
+int k;
+int c;
+for(i=1; i<10; i++)
+{   
+	for(k=1; k<=i; k++)
+
+	{
+		c=i*k;
+	    printf ("%d*%d=%d\t",k,i,c);
+	}
+	printf("\n");
+  }
+return 0;
+}
 
 
-//#include<stdio.h>
-//int print(int num)
-//{int i;
-//for(i=1; i<=num; i++)
-//{   int k;
-//	for(k=1; k<=i; k++)
-//
-//	{   int c;
-//		c=i*k;
-//	    printf ("%d*%d=%d\t",k,i,c);
-//	}
-//	printf("\n");
-//  }
-//
-//
-//
-//
-//
-//}
-//int main()
-//{int n=0;
-// scanf("%d",&n);
-// print(n);
-//return 0;
-//}
-//#include<stdio.h>
-//void swap(int *x,int *y)
-//{
-//	int temp;
-//    temp=*x;
-//    *x=*y;
-//    *y=temp;
-//printf("%d %d",*x,*y);
-//}
-//int main()
-//{
-//	int i,k;
-//    printf("请输入俩个数\n");
-//    scanf("%d %d",&i,&k);
-//    swap(&i,&k);
+#include<stdio.h>
+int print(int num)
+{int i;
+for(i=1; i<=num; i++)
+{   int k;
+	for(k=1; k<=i; k++)
+
+	{   int c;
+		c=i*k;
+	    printf ("%d*%d=%d\t",k,i,c);
+	}
+	printf("\n");
+  }
+
+
+
+
+
+}
+int main()
+{int n=0;
+ scanf("%d",&n);
+ print(n);
+return 0;
+}
+#include<stdio.h>
+void swap(int *x,int *y)
+{
+	int temp;
+    temp=*x;
+    *x=*y;
+    *y=temp;
+printf("%d %d",*x,*y);
+}
+int main()
+{
+	int i,k;
+    printf("请输入俩个数\n");
+    scanf("%d %d",&i,&k);
+    swap(&i,&k);
 
 
 
