@@ -14,10 +14,11 @@ void game()
 	char show[ROWS][COLS]={0};
 	InitBoard(mine,ROWS,COLS,'0');
 	InitBoard(show,ROWS,COLS,'*');
-	DisplayBoard(mine,ROW,COL);
-	/*DisplayBoard(show,ROWS,COLS);*/
+	DisplayBoard(show,ROW,COL);
+	
 	Setmine(mine,ROW,COL);
-	Findmine(mine,show,ROW,COL);
+	/*DisplayBoard(mine,ROW,COL);*/
+	FindMine(mine,show,ROW,COL);
 
 
 
@@ -30,8 +31,7 @@ int main()
 	srand((unsigned int)time(NULL));
 	do
 	{
-		menu();
-		printf("«Î—°‘Ò\n");
+		menu();		
 		scanf("%d",&input);
 		switch(input)
 		{

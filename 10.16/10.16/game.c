@@ -1,0 +1,89 @@
+#include"game.h"
+void InitBoard(char Board[ROW][COL],int row,int col)
+{
+	int i=0;
+	for(i=0; i<row; i++)
+	{
+		int j=0;
+		for(j=0; j<col; j++)
+			Board[i][j]=' ';
+	}
+}
+void DisplayBoard(char Board[ROW][COL],int row,int col)
+//{
+//	int i=0;
+//	for(i=0; i<row; i++)
+//	{
+//		printf(" %c | %c | %c \n",Board[i][0],Board[i][1],Board[i][2]);
+//		if(i<row-1)
+//			printf("---|---|---\n");
+//	}
+//}
+{
+	int i=0;
+	for(i=0; i<row; i++)
+	{
+		int j=0;
+		for(j=0; j<col; j++)
+		{
+			printf(" %c ",Board[i][j]);
+			if(j<col-1)
+				printf("|");
+		}
+		printf("\n");
+		if(i<row-1)
+		{
+		for(j=0; j<col; j++)
+		{
+			printf("---");
+		if(j<col-1)
+			printf("|");
+		}
+		printf("\n");}
+		
+	}
+}
+void Computermove(char Board[ROW][COL],int row,int col)
+{
+	int x=0;
+	int y=0;
+	printf("电脑走\n");
+	while(1)
+	{
+		x=rand()%row;
+	    y=rand()%col;
+	if(Board[x][y]==' ')
+	 {
+		Board[x][y]='X';
+		break;
+
+	 }
+ }
+}
+void Playermove(char Board[ROW][COL],int row,int col)
+{
+	int x=0;
+	int y=0;
+	while(1)
+	{
+		printf("请输入坐标\n");
+	    scanf("%d%d",&x,&y);
+	if(x>=1&&x<=row&&y>=1&&y<=col)
+	{
+		if(Board[x-1][y-1]==' ')
+		{
+			Board[x-1][y-1]='0';
+			break;
+		}
+		else
+		{
+			printf("坐标被占用请重新输入\n");
+		}
+
+	}
+	else
+	{
+		printf("输入有误请重新输入\n");
+	}
+	}
+}
