@@ -10,15 +10,35 @@ void menu()
 void game()
 {
 	char Board[ROW][COL]={0};
+	char ret;
 	InitBoard(Board,ROW,COL);
 	DisplayBoard(Board,ROW,COL);
 	while(1)
 	{
 		Computermove(Board,ROW,COL);
+		ret=IsWin(Board,ROW,COL);
+		if(ret !=' ')
+			break;
 		DisplayBoard(Board,ROW,COL);
         Playermove(Board,ROW,COL);
+		ret=IsWin(Board,ROW,COL);
+		if(ret !=' ')
+			break;
 		DisplayBoard(Board,ROW,COL);
 	}
+	if(ret=='X')
+	{
+		printf("电脑赢\n");
+	}
+	else if(ret=='0')
+	{
+		printf("玩家赢\n");
+	}
+	else if(ret=='Q')
+	{
+		printf("平局\n");
+	}
+	DisplayBoard(Board,ROW,COL);
 }
 int main()
 {
