@@ -58,4 +58,20 @@
 //	printf("%d\n",print(arr,sz));
 //	return 0;
 //}
-
+#include <stdio.h>
+#include <windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "Winmm.lib")
+int main(int argc, char ** argv)
+{
+    TCHAR fileName[] = "Maroon 5 - Lost Stars";
+    TCHAR shortName[MAX_PATH];
+    GetShortPathName(fileName, shortName, sizeof(shortName) / sizeof(TCHAR));
+    TCHAR cmd[MAX_PATH+10];
+    wsprintf(cmd, "play %s", shortName);
+    mciSendString(cmd,NULL, 0, NULL);
+    printf("Currently playing: %s\n", cmd);
+    Sleep(5 * 60 * 1000);
+ 
+    return 0;
+}
