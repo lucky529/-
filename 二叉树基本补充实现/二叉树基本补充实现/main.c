@@ -103,7 +103,35 @@ void BinaryTreeLevelOrder(BTNode* root)
 		}
 	}
 }
+int BinaryTreeComplete(BTNode* root)//判断二叉树是否为完全二叉树
+{
+	Queue Q;
+	QueueInit(&Q);
+	QueuePush(&Q, root);
+	while (QueueEmpty(&Q))
+	{
+		BTNode* front = QueueFront(&Q);
+		QueuePop(&Q);
+		if (front == NULL)
+		{
+			break;
+		}
+		QueuePush(&Q,front->_left);
+		QueuePush(&Q,front->_right);
+	}
 
+	while (QueueEmpty(&Q))
+	{
+		BTNode* front = QueueFront(&Q);
+		QueuePop(&Q);
+		if (front != NULL)
+		{
+			return 0;
+		}
+	}
+
+	return 1;
+}
 
 //队列部分
 void QueueInit(Queue* pq)
@@ -189,13 +217,17 @@ int QueueSize(Queue* pq)
 }
 void test1()
 {
-	char arr[100] = "ABD##E#H##CF##G##";
+	char arr[100] = "AB##d##";
 	int pindex = 0;
 	BTNode* root = BinaryTreeCreate(arr, &pindex);
 	BinaryTreePrevOrder(root);
 	printf("\n");
 
 	BinaryTreeLevelOrder(root);//层序遍历
+	printf("\n");
+
+	
+	printf("%d\n", BinaryTreeComplete(root));
 	BinaryTreeDestory(root);
 	root = NULL;
 	system("pause");
