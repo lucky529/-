@@ -173,9 +173,90 @@ void BubbleSort(int* a, int n)
 		}
 	}
 }
+void _MergeSort(int* a, int* tmp, int begin, int end)//归并排序
+{
+
+	if (begin >= end)
+	{
+		return;
+	}
+	int mid = begin + ((end - begin) >> 1);
+
+	_MergeSort(a, tmp, begin, mid);
+	_MergeSort(a, tmp, mid + 1, end);
+
+	int begin1 = begin; int end1 = mid;
+	int begin2 = mid + 1; int end2 = end;
+
+	int index = 0;
+	while (begin1 <= end1 && begin2 <= end2)
+	{
+		if (a[begin1] < a[begin2])
+		{
+			tmp[index++] = a[begin1++];
+		}
+		else
+		{
+			tmp[index++] = a[begin2++];
+		}
+	}
+
+	while (begin1 <= end1)
+	{
+		tmp[index++] = a[begin1++];
+	}
+	while (begin2 <= end2)
+	{
+		tmp[index++] = a[begin2++];
+	}	
+	
+	for (int i = 0; i < index; i++)
+	{
+		a[begin + i] = tmp[i];
+	}
+}
+void MergeSort(int* a, int n)
+{
+	int* tmp = (int*)malloc(sizeof(int)*n);
+	_MergeSort(a, tmp, 0, n - 1);
+	free(tmp);
+}
+
+void CountSort(int* a, int n)
+{
+	int max = a[0];
+	int min = a[0];
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+		}
+		if (a[i] < min)
+		{
+			min = a[i];
+		}
+	}
+
+	int range = max - min + 1;
+	int* ans = (int*)malloc(sizeof(int)*range);
+	memset(ans, 0, sizeof(int)*range);//把数组中的数字全部设置为0
+	for (int j = 0; j < n; j++)
+	{
+		ans[a[j] - min]++;
+	}
+	int index = 0;
+	for (int k = 0; k < range; k++)
+	{
+		while (ans[k]--)
+		{
+			a[index++] = k + min;
+		}
+	}
+}
 void test1()
 {
-	int arr[] = { 1, 6, 5, 4, 3, 44, 8, 66, 77 };
+	int arr[] = { 1, 6, 5, 44, 33, 44, 88, 66, 77 };
 	int n = sizeof(arr) / sizeof(int);
 	Quicksort1(arr, 0, n - 1);
 	Print(arr, n);
@@ -191,8 +272,8 @@ void test2()
 
 void test3()
 {
-	int arr[] = { 1, 6, 5, 4, 3, 44, 8, 66, 77 };
+	int arr[] = { 16, 66, 56, 46, 36, 44, 8, 66, 77 };
 	int n = sizeof(arr) / sizeof(int);
-	BubbleSort(arr, n);
+	MergeSort(arr, n);
 	Print(arr, n);
 }
