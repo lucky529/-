@@ -118,3 +118,52 @@ struct ListNode *detectCycle(struct ListNode *head) {
 		return Union;
 	}
 }
+typedef struct RandomListNode RLNode;
+struct RandomListNode *copyRandomList(struct RandomListNode *head)//复制带随机指针的链表
+{
+	if (head == NULL) return head;
+	RLNode* cur = head;
+	while (cur)
+	{
+		RLNode* next = cur->next;
+		RLNode* copy = (RLNode*)malloc(sizeof(RLNode));
+		copy->label = cur->label;
+		cur->next = copy;
+		copy->next = next;
+
+		cur = next;
+	}
+	cur = head;
+	while (cur)
+	{
+		RLNode* copy = cur->next;
+		if (cur->random)
+		{
+			copy->random = cur->random->next;
+		}
+		else
+		{
+			copy->random = NULL;
+		}
+
+		cur = copy->next;
+	}
+	RLNode* newhead, *tail;
+	newhead = tail = (RLNode*)malloc(sizeof(RLNode));
+	cur = head;
+	while (cur)
+	{
+		RLNode* copy = cur->next;
+		RLNode* next = copy->next;
+
+		tail->next = copy;
+		tail = tail->next;
+
+		cur->next = next;
+		cur = next;
+	}
+	RLNode* Nhead = newhead->next;
+	free(newhead);
+
+	return Nhead;
+}
